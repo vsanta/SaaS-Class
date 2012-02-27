@@ -9,6 +9,7 @@ def rps_game_winner(game)
   if valid_strategy?(player_1) == false or  valid_strategy?(player_2) == false
     raise  NoSuchStrategyError
   end
+
   compare_strategies(player_1, player_2)[0]
 end
 
@@ -20,21 +21,28 @@ def valid_strategy? player
 end
 
 def compare_strategies player_one, player_two
-
-  if VALID_STRATEGIES[player_one[1]] == :rock
-    if VALID_STRATEGIES[player_two[1]] == :scissors
-      return player_one
-    elsif VALID_STRATEGIES[player_two[1]] == :paper
-      return player_two
-    end
-  end
-
-  if VALID_STRATEGIES[player_one[1]] == :scissors
-    if VALID_STRATEGIES[player_two[1]] == :rock
-      return player_two
-    elsif VALID_STRATEGIES[player_two[1]] == :paper
-      return player_one
-    end
+  case VALID_STRATEGIES[player_one[1]]
+    when :rock
+      if VALID_STRATEGIES[player_two[1]] == :scissors
+        return  player_one
+      end
+      if  VALID_STRATEGIES[player_two[1]] == :paper
+        return player_two
+      end
+    when :paper
+      if VALID_STRATEGIES[player_two[1]] == :scissors
+        return  player_two
+      end
+      if  VALID_STRATEGIES[player_two[1]] == :rock
+        return player_one
+      end
+    when :scissors
+      if VALID_STRATEGIES[player_two[1]] == :paper
+        return  player_one
+      end
+      if  VALID_STRATEGIES[player_two[1]] == :rock
+        return player_two
+      end
   end
 
 end

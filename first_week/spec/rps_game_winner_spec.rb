@@ -10,12 +10,15 @@ describe "Rock Paper Scissors game " do
     context "valid ones" do
       it "rock beats scissors" do
          rps_game_winner([ [ "Armando", "R" ], [ "Dave", "S" ] ]).should == "Armando"
+         rps_game_winner([ [ "Armando", "S" ], [ "Dave", "R" ] ]).should == "Dave"
       end
       it "paper beats rock" do
         rps_game_winner([ [ "Armando", "R" ], [ "Dave", "P" ] ]).should == "Dave"
+        rps_game_winner([ [ "Armando", "P" ], [ "Dave", "R" ] ]).should == "Armando"
       end
       it "scissors beats paper" do
         rps_game_winner([ [ "Armando", "S" ], [ "Dave", "P" ] ]).should == "Armando"
+        rps_game_winner([ [ "Armando", "P" ], [ "Dave", "S" ] ]).should == "Dave"
       end
     end
     context "invalid one" do
