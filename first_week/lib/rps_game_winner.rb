@@ -1,6 +1,7 @@
 class WrongNumberOfPlayersError < StandardError ; end
 class NoSuchStrategyError < StandardError ; end
 
+
 def rps_game_winner(game)
   raise WrongNumberOfPlayersError unless game.length == 2
   player_1 = game[0]
@@ -10,7 +11,7 @@ def rps_game_winner(game)
     raise  NoSuchStrategyError
   end
 
-  compare_strategies(player_1, player_2)[0]
+  compare_strategies(player_1, player_2)
 end
 
 private
@@ -29,11 +30,18 @@ def compare_strategies player_one, player_two
       if  VALID_STRATEGIES[player_two[1]] == :paper
         return player_two
       end
+      if  VALID_STRATEGIES[player_two[1]] == :rock
+        return player_one
+      end
+
     when :paper
       if VALID_STRATEGIES[player_two[1]] == :scissors
         return  player_two
       end
       if  VALID_STRATEGIES[player_two[1]] == :rock
+        return player_one
+      end
+      if  VALID_STRATEGIES[player_two[1]] == :paper
         return player_one
       end
     when :scissors
@@ -42,6 +50,9 @@ def compare_strategies player_one, player_two
       end
       if  VALID_STRATEGIES[player_two[1]] == :rock
         return player_two
+      end
+      if  VALID_STRATEGIES[player_two[1]] == :scissors
+        return player_one
       end
   end
 
