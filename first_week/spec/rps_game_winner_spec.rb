@@ -2,18 +2,34 @@ require "rubygems"
 require_relative "../lib/rps_game_winner"
 
 describe "Rock Paper Scissors game " do
-  #describe "tournament" do
-  #    rps_tournament_winner([
-  #                               [
-  #                                [ ["Armando", "P"], ["Dave", "S"] ],
-  #                                [ ["Richard", "R "],  ["Michael", "S"] ],
-  #                                ],
-  #                            [
-  #                              [ ["Allen", "S"], ["Omer", "P"] ],
-  #                              [ ["David E.", "R"], ["Richard X.", "P"] ]
-  #                            ]
-  #                          ]).should == ["Richard", "R"]
-  #end
+  describe "tournament" do
+    it "should handle a one game tournament" do
+      rps_tournament_winner([ [ "Armando", "R" ], [ "Dave", "R" ] ]).should == "Armando"
+    end
+    it "should pass using a 2 game tournament" do
+      pending
+      rps_tournament_winner(
+                        [
+                          [ ["Armando", "P"], ["Dave", "S"] ],
+                          [ ["Richard", "R"],  ["Michael", "S"] ],
+                        ]
+                    ).should == "Richard"
+    end
+    it "shoudl pass using hw example" do
+      pending
+      rps_tournament_winner( [
+                        [
+                          [ ["Armando", "P"], ["Dave", "S"] ],
+                          [ ["Richard", "R"],  ["Michael", "S"] ],
+                        ],
+                        [
+                          [ ["Allen", "S"], ["Omer", "P"] ],
+                          [ ["David E.", "R"], ["Richard X.", "P"] ]
+                        ]
+                    ]).should == "Richard"
+    end
+
+  end
   describe "number of players" do
     it "should raise error if not two" do
       lambda{ rps_game_winner [] }.should raise_error WrongNumberOfPlayersError
